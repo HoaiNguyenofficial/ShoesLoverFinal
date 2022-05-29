@@ -10,6 +10,7 @@ namespace ShoesLover.Controllers
 {
     public class colorController:Controller
     {
+        /*
         public IActionResult LietKeColor()
         {
             StoreContext context = HttpContext.RequestServices.GetService(typeof(ShoesLover.Data.StoreContext)) as StoreContext;
@@ -23,6 +24,7 @@ namespace ShoesLover.Controllers
             return View(context.GetColors());
 
         }
+        */
     }
     
 }

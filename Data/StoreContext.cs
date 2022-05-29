@@ -5243,6 +5243,19 @@ namespace ShoesLover.Data
 
             }
         }
+        public int checkExistUserAndOrder(int uid,int id)
+        {
+            using (MySqlConnection conn = GetConnection())
+            {
+                conn.Open();
+                var str = "SELECT COUNT(*) FROM `order` WHERE id=@id AND uid=@uid";
+                MySqlCommand cmd = new MySqlCommand(str, conn);
+                cmd.Parameters.AddWithValue("id", id);
+                cmd.Parameters.AddWithValue("uid", uid);
+
+                return (int)cmd.ExecuteScalar();    
+            }
+        }
         public int UpdatePaymentStatus(int id)
         {
             using (MySqlConnection conn = GetConnection())

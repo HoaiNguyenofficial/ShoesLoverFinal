@@ -12,10 +12,10 @@ namespace ShoesLover.Controllers
 {
     public class OrderController : Controller
     {
-        public IActionResult Index()
-        {
-            return View();
-        }
+        /*       public IActionResult Index()
+               {
+                   return View();
+               }*/
         [HttpPost]
         public IActionResult SetCheckoutList([FromBody]string productList)
         {
@@ -123,40 +123,77 @@ namespace ShoesLover.Controllers
 
         public IActionResult ViewOrderCustomer( int id)
         {
+            if (HttpContext.Session.GetString("user") == null)
+            {
+                return RedirectToAction("Index", "Home");
+            }
+            User user = JsonConvert.DeserializeObject<User>(HttpContext.Session.GetString("user"));
+
+            int id1 = user.ID;
             StoreContext context = HttpContext.RequestServices.GetService(typeof(ShoesLover.Data.StoreContext)) as StoreContext;
-            ViewBag.ShowDetailOrder = context.GetOrderDetailByID(id);
-            ViewBag.GetOrderID = context.GetOrderIDByID(id);
-            return View(context.GetCustomerByID(id));
+            ViewBag.ShowDetailOrder = context.GetOrderDetailByID(id1);
+            ViewBag.GetOrderID = context.GetOrderIDByID(id1);
+            return View(context.GetCustomerByID(id1));
         }
         public PartialViewResult ViewAllOrderCustomer(int uid)
         {
+            if (HttpContext.Session.GetString("user") == null)
+            {
+                return null;
+            }
+            User user = JsonConvert.DeserializeObject<User>(HttpContext.Session.GetString("user"));
+            uid = user.ID;
             StoreContext context = HttpContext.RequestServices.GetService(typeof(ShoesLover.Data.StoreContext)) as StoreContext;
             ViewBag.ShowDetailOrder = context.GetOrderDetailByID(uid);
             ViewBag.GetOrderID = context.GetOrderIDByID(uid);
             return PartialView(context.GetCustomerByID(uid));
         }
 
+
+        ////
         public PartialViewResult UpdateOrderReason(int order_id, DateTime old_order_date, string text)
         {
+            if (HttpContext.Session.GetString("user") == null)
+            {
+                return null;
+            }
+            User user = JsonConvert.DeserializeObject<User>(HttpContext.Session.GetString("user"));
+            int uid = user.ID;
+
             int count;
             StoreContext context = HttpContext.RequestServices.GetService(typeof(ShoesLover.Data.StoreContext)) as StoreContext;
-            count = context.UpdateOrderReason(order_id, old_order_date ,text);
-            if (count > 0)
+            if (context.checkExistUserAndOrder(uid, order_id) > 0)
             {
-                ViewData["message"] = "Update thành công";
-                ViewData["message-status"] = "success";
+                count = context.UpdateOrderReason(order_id, old_order_date, text);
+                if (count > 0)
+                {
+                    ViewData["message"] = "Update thành công";
+                    ViewData["message-status"] = "success";
+                }
+                else
+                {
+                    ViewData["message"] = "Update thất bại";
+                    ViewData["message-status"] = "error";
+                }
             }
             else
             {
                 ViewData["message"] = "Update thất bại";
                 ViewData["message-status"] = "error";
             }
+            
 
             return PartialView();
         }
         public PartialViewResult ShowOrderStatus(int uid, int status_id)
         {
-           
+            if (HttpContext.Session.GetString("user") == null)
+            {
+                return null;
+            }
+            User user = JsonConvert.DeserializeObject<User>(HttpContext.Session.GetString("user"));
+            uid = user.ID;
+
             StoreContext context = HttpContext.RequestServices.GetService(typeof(ShoesLover.Data.StoreContext)) as StoreContext;
            
 
