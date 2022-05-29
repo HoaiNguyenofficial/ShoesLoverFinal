@@ -1,23 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "F:\\New\\WebSecurityFinal\\ShoesLover.csproj": {}
+    "C:\\Users\\Administrator\\OneDrive\\Desktop\\C#\\ShoesLoverFinal\\ShoesLoverFinal\\ShoesLover.csproj": {}
   },
   "projects": {
-    "F:\\New\\WebSecurityFinal\\ShoesLover.csproj": {
+    "C:\\Users\\Administrator\\OneDrive\\Desktop\\C#\\ShoesLoverFinal\\ShoesLoverFinal\\ShoesLover.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "F:\\New\\WebSecurityFinal\\ShoesLover.csproj",
+        "projectUniqueName": "C:\\Users\\Administrator\\OneDrive\\Desktop\\C#\\ShoesLoverFinal\\ShoesLoverFinal\\ShoesLover.csproj",
         "projectName": "ShoesLover",
-        "projectPath": "F:\\New\\WebSecurityFinal\\ShoesLover.csproj",
-        "packagesPath": "C:\\Users\\DELL\\.nuget\\packages\\",
-        "outputPath": "F:\\New\\WebSecurityFinal\\obj\\",
+        "projectPath": "C:\\Users\\Administrator\\OneDrive\\Desktop\\C#\\ShoesLoverFinal\\ShoesLoverFinal\\ShoesLover.csproj",
+        "packagesPath": "C:\\Users\\Administrator\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Administrator\\OneDrive\\Desktop\\C#\\ShoesLoverFinal\\ShoesLoverFinal\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
-        ],
         "configFilePaths": [
-          "C:\\Users\\DELL\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Administrator\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [

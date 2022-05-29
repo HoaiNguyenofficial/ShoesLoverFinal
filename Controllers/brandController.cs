@@ -12,7 +12,14 @@ namespace shoeslover.Controllers
     {
         public IActionResult Index()
         {
-            return View();
+            try
+            {
+                return View();
+            }
+            catch
+            {
+                return RedirectToAction(nameof(Index));
+            }
         }
 
 

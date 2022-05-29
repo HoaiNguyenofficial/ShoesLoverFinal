@@ -14,19 +14,43 @@ namespace ShoesLover.Controllers
     {        // GET: CartController
         public ActionResult Index()
         {
-            return View();
+            try
+            {
+                return View();
+            }
+            catch
+            {
+                return RedirectToAction(nameof(Index));
+
+            }
         }
 
         // GET: CartController/Details/5
         public ActionResult Details(int id)
         {
-            return View();
+            try
+            {
+                return View();
+            }
+            catch
+            {
+                return RedirectToAction(nameof(Index));
+
+            }
         }
 
         // GET: CartController/Create
         public ActionResult Create()
         {
-            return View();
+            try
+            {
+                return View();
+            }
+            catch
+            {
+                return RedirectToAction(nameof(Index));
+
+            }
         }
 
         // POST: CartController/Create
@@ -118,7 +142,7 @@ namespace ShoesLover.Controllers
                 User currentUser = JsonConvert.DeserializeObject<User>(HttpContext.Session.GetString("user"));
                 item.UserId = currentUser.ID;
                 store.AddToCart(item);
-            }   
+            }
 
             return Json(currentCartItem);
         }
@@ -128,7 +152,7 @@ namespace ShoesLover.Controllers
             HttpContext.Session.Remove("cart");
             StoreContext store = HttpContext.RequestServices.GetService(typeof(StoreContext)) as StoreContext;
             if (HttpContext.Session.GetString("user") != null)
-            {            
+            {
                 User currentUser = JsonConvert.DeserializeObject<User>(HttpContext.Session.GetString("user"));
                 store.DeleteAllUserCart(currentUser.ID);
             }
@@ -141,7 +165,7 @@ namespace ShoesLover.Controllers
             StoreContext store = HttpContext.RequestServices.GetService(typeof(StoreContext)) as StoreContext;
 
             List<CartItemDetail> detailList = new List<CartItemDetail>();
-            foreach(var item in list)
+            foreach (var item in list)
             {
                 detailList.Add(item.ParseCartDetailItem(store));
             }
